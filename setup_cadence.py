@@ -2,7 +2,7 @@ from gdown import download
 from zipfile import ZipFile
 from os import mkdir, chdir, remove, path, system
 from sys import argv, exit
-from shutil import rmtree, copyfile
+from shutil import rmtree
 import tarfile
 
 def main():
@@ -13,8 +13,7 @@ def main():
 
     home_dir = path.expanduser("~")
 
-    #download(link, "MSRF_General_Purpose_Plus.zip", fuzzy=True)
-    copyfile(f"{home_dir}/Downloads/MSRF_General_Purpose_Plus.zip", "./MSRF_General_Purpose_Plus.zip")
+    download(link, "MSRF_General_Purpose_Plus.zip", fuzzy=True)
     with ZipFile("MSRF_General_Purpose_Plus.zip", 'r') as zip_ref: zip_ref.extractall(".")
 
     mkdir("temp")
@@ -48,7 +47,7 @@ def main():
         f.write("\nexport PATH=/package/eda/cadence/IC231.060/tools/dfII/bin:$PATH\n")
 
     system("chmod +x .setup_cadence.sh")
-    
+
     return
 
 if __name__ == "__main__":
