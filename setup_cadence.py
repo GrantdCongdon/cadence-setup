@@ -14,7 +14,7 @@ def main():
     home_dir = path.expanduser("~")
 
     #download(link, "MSRF_General_Purpose_Plus.zip", fuzzy=True)
-    copyfile(f"{home_dir}/Downloads/MSRF_General_Purpose_Plus.zip", ".")
+    copyfile(f"{home_dir}/Downloads/MSRF_General_Purpose_Plus.zip", "./MSRF_General_Purpose_Plus.zip")
     with ZipFile("MSRF_General_Purpose_Plus.zip", 'r') as zip_ref: zip_ref.extractall(".")
 
     mkdir("temp")
