@@ -40,12 +40,6 @@ def main():
         f.write("SOFTINCLUDE /package/eda/cadence/IC231.060/share/cdssetup/cds.lib\n")
         f.write(f"INCLUDE {home_dir}/Documents/ASIC/TSMC-65nm/lib.defs\n")
 
-    system("module load cadence/virtuoso/23.10.060")
-    system("module load cadence/spectre/23.10.509")
-    system("module load keysight/ads/2022.2")
-    system("module load cadence/virtuoso-advanced/20.1.34")
-    system("module save ASIC")
-
     with open(".setup_cadence.sh", "w") as f:
         f.write("#!/bin/bash\n")
         f.write("\nmodule restore ASIC\n")
@@ -54,8 +48,7 @@ def main():
         f.write("\nexport PATH=/package/eda/cadence/IC231.060/tools/dfII/bin:$PATH\n")
 
     system("chmod +x .setup_cadence.sh")
-    system("source .setup_cadence.sh")
-
+    
     return
 
 if __name__ == "__main__":
