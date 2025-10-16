@@ -17,18 +17,15 @@ def main():
     os.mkdir("temp")
     with tarfile.open("MSRF_General_Purpose_Plus/PDK/Cadence OA/tn65cmsp018k3_1_0c/PDK_CRN65GP_v1.0c_official_IC61_20101010_all.tar.gz", 'r') as tar_ref: tar_ref.extractall("./temp/")
 
-    os.chdir("~/Documents")
-    os.mkdir("ASIC")
-    os.chdir("ASIC")
-    os.mkdir("TSMC-65nm")
-    os.chdir("~/cadence_setup/")
-    with tarfile.open("temp/PDK_CRN65GP_v1.0c_official_IC61_20101010.tar.gz", 'r') as tar_ref: tar_ref.extractall("TSMC-65nm/")
+    home_dir = os.path.expanduser("~")
+    os.mkdir(f"{home_dir}/Documents/ASIC/TSMC-65nm/")
+    with tarfile.open("temp/PDK_CRN65GP_v1.0c_official_IC61_20101010.tar.gz", 'r') as tar_ref: tar_ref.extractall(f"{home_dir}/Documents/ASIC/TSMC-65nm/")
 
     os.remove("temp", recursive=True)
     os.remove("MSRF_General_Purpose_Plus", recursive=True)
     os.remove("MSRF_General_Purpose_Plus.zip")
 
-    os.chdir("~/Documents/ASIC/TSMC-65nm/")
+    os.chdir(f"{home_dir}/Documents/ASIC/TSMC-65nm/")
     # execute a pearl script but include injection of the numbers "3," "1," "3," "2" but when prompted for input
     os.system("./pdkInstall.pl <<< $'3\n1\n3\n2\n'")
 
