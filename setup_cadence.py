@@ -18,7 +18,8 @@ def main():
     with tarfile.open("MSRF_General_Purpose_Plus/PDK/Cadence OA/tn65cmsp018k3_1_0c/PDK_CRN65GP_v1.0c_official_IC61_20101010_all.tar.gz", 'r') as tar_ref: tar_ref.extractall("./temp/")
 
     home_dir = os.path.expanduser("~")
-    os.mkdir(f"{home_dir}/Documents/ASIC/TSMC-65nm/")
+    os.mkdir(f"{home_dir}/Documents/ASIC")
+    os.mkdir(f"{home_dir}/Documents/ASIC/TSMC-65nm")
     with tarfile.open("temp/PDK_CRN65GP_v1.0c_official_IC61_20101010.tar.gz", 'r') as tar_ref: tar_ref.extractall(f"{home_dir}/Documents/ASIC/TSMC-65nm/")
 
     os.remove("temp", recursive=True)
