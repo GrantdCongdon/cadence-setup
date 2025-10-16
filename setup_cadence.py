@@ -40,10 +40,10 @@ def main():
         f.write("SOFTINCLUDE /package/eda/cadence/IC231.060/share/cdssetup/cds.lib\n")
         f.write(f"INCLUDE {home_dir}/Documents/ASIC/TSMC-65nm/lib.defs\n")
 
-    system("module load cadence/virtuoso")
-    system("module load cadence/spectre")
-    system("module load keysight/ads")
-    system("module load cadence/virtuoso-advanced")
+    system("module load cadence/virtuoso/23.10.060")
+    system("module load cadence/spectre/23.10.509")
+    system("module load keysight/ads/2022.2")
+    system("module load cadence/virtuoso-advanced/20.1.34")
     system("module save ASIC")
 
     with open(".setup_cadence.sh", "w") as f:
@@ -55,8 +55,6 @@ def main():
 
     system("chmod +x .setup_cadence.sh")
     system("source .setup_cadence.sh")
-
-    rmtree("cadence-setup")
 
     return
 
