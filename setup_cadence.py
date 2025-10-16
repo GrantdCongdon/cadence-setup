@@ -3,6 +3,7 @@ from zipfile import ZipFile
 import os
 import tarfile
 import sys
+import shutil
 
 
 def main():
@@ -15,15 +16,15 @@ def main():
     with ZipFile("MSRF_General_Purpose_Plus.zip", 'r') as zip_ref: zip_ref.extractall(".")
 
     os.mkdir("temp")
-    with tarfile.open("MSRF_General_Purpose_Plus/PDK/Cadence OA/tn65cmsp018k3_1_0c/PDK_CRN65GP_v1.0c_official_IC61_20101010_all.tar.gz", 'r') as tar_ref: tar_ref.extractall("./temp/")
+    with tarfile.open("MSRF_General_Purpose_Plus/PDK/Cadence OA/tn65cmsp018k3_1_0c/PDK_CRN65GP_v1.0c_official_IC61_20101010_all.tar.gz", 'r') as tar_ref: tar_ref.extractall("./temp/", filter='data')
 
     home_dir = os.path.expanduser("~")
     os.mkdir(f"{home_dir}/Documents/ASIC")
     os.mkdir(f"{home_dir}/Documents/ASIC/TSMC-65nm")
-    with tarfile.open("temp/PDK_CRN65GP_v1.0c_official_IC61_20101010.tar.gz", 'r') as tar_ref: tar_ref.extractall(f"{home_dir}/Documents/ASIC/TSMC-65nm/")
+    with tarfile.open("temp/PDK_CRN65GP_v1.0c_official_IC61_20101010.tar.gz", 'r') as tar_ref: tar_ref.extractall(f"{home_dir}/Documents/ASIC/TSMC-65nm/", filter='data')
 
-    os.remove("temp", recursive=True)
-    os.remove("MSRF_General_Purpose_Plus", recursive=True)
+    shutil.rmtree("temp")
+    shutil.rmtree("MSRF_General_Purpose_Plus")
     os.remove("MSRF_General_Purpose_Plus.zip")
 
     os.chdir(f"{home_dir}/Documents/ASIC/TSMC-65nm/")
